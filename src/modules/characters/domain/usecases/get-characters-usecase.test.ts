@@ -50,7 +50,7 @@ describe('GetCharactersUseCase Tests', () => {
     )
   })
 
-  test(`should return not found if planet name is not found in planets list
+  test(`should return not found for homeWorld if planet name is not found in planets list
       and use default value if page is not provided`, async () => {
     repository.getAllPlanets.mockResolvedValue(MockData.planets)
     repository.getAllPeople.mockResolvedValue([

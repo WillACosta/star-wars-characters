@@ -8,4 +8,5 @@ export type PersonNetworkModel = {
   height: string
   mass: string
   gender: string
+  url: string
 }

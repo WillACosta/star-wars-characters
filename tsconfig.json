@@ -18,7 +18,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@core/*": ["./src/modules/core/*"],
+      "@characters/*": ["./src/modules/characters/*"]
     }
   },
   "include": [

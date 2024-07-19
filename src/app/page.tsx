@@ -1,3 +1,11 @@
+import Header from '@/components/layout/Header'
+import CharactersView from '@/modules/characters/presentation/views/CharactersView'
+
 export default function Home() {
-  return <h1>Hello dev!</h1>
+  return (
+    <main>
+      <Header />
+      <CharactersView />
+    </main>
+  )
 }

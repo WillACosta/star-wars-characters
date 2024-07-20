@@ -48,7 +48,7 @@ export default function CardItem({
         <li className='flex items-center'>
           <span className='mr-2 after'>GENDER</span>
           <span className='w-1 h-1 mr-2 bg-gray rounded-full'></span>
-          <span>{gender.toUpperCase()}</span>
+          <span>{gender}</span>
         </li>
       </ul>
     </div>

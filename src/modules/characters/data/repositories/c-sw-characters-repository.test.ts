@@ -1,12 +1,6 @@
-import { MockData } from '@/modules/core/test/mocks'
+import { MockData, MockPlanetDataSource } from '@/modules/core/test/mocks'
 import { StarWarsCharactersRepository } from '../../domain/repositories'
 import { CStarWarsCharactersRepository } from './c-sw-characters-repository'
-
-class MockPlanetDataSource {
-  getAllPlanets = jest.fn()
-  getAllPeople = jest.fn()
-  getPlanetById = jest.fn()
-}
 
 describe('StarWarsCharactersRepository Tests', () => {
   let repository: StarWarsCharactersRepository
@@ -75,11 +69,13 @@ describe('StarWarsCharactersRepository Tests', () => {
     })
 
     test('should thrown an error if something went wrong', () => {
-      dataSource.getPlanetById.mockResolvedValue(MockData.planets[0])
+      dataSource.getPlanetById.mockRejectedValue(
+        new Error('Something went wrong!')
+      )
 
-      repository.getPlanet('https://swapi.dev/api/planets/1/')
-
-      expect(dataSource.getPlanetById).toHaveBeenCalledWith('1')
+      expect(
+        repository.getPlanet('https://swapi.dev/api/planets/1/')
+      ).rejects.toThrow('Something went wrong!')
     })
   })
 })

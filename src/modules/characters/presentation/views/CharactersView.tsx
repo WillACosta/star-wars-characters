@@ -3,9 +3,15 @@
 import { Button } from '@/components/atoms/Button'
 import CardItem from '@/components/atoms/CardItem'
 import { useEffect, useState } from 'react'
-import { charactersRepository } from '../../di/character-module'
+
+import {
+  charactersRepository,
+  memoryManagerService,
+} from '../../di/character-module'
+
 import { Character } from '../../domain/models'
 import { getCharactersUseCase } from '../../domain/usecases'
+
 import Filter from '../components/Filter'
 
 type CharactersViewProps = {}
@@ -17,7 +23,10 @@ export default function CharactersView({}: CharactersViewProps) {
   useEffect(() => {
     async function loadMoreResults() {
       setCharacters(
-        await getCharactersUseCase(charactersRepository).execute(page)
+        await getCharactersUseCase(
+          charactersRepository,
+          memoryManagerService
+        ).execute(page)
       )
     }
 
@@ -37,9 +46,9 @@ export default function CharactersView({}: CharactersViewProps) {
 
         <div className='py-4 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5'>
           {characters.map(
-            ({ image, name, height, mass, gender, homeWorld }) => (
+            ({ id, image, name, height, mass, gender, homeWorld }) => (
               <CardItem
-                key={name}
+                key={id}
                 image={image}
                 name={name}
                 height={height}

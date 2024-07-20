@@ -1,18 +1,26 @@
-import {
-  PlanetNetworkResponse
-} from '@/modules/characters/data/models'
-
+import { PlanetNetworkResponse } from '@/modules/characters/data/models'
 import { NextRequest, NextResponse } from 'next/server'
 
 const SWAPI_BASE_URL = process.env.SWAPI_BASE_URL
 
-export async function GET(_: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const response = await fetch(`${SWAPI_BASE_URL}/planets`)
-    const data = (await response.json()) as PlanetNetworkResponse
+    const queryParams = await request.nextUrl.searchParams
+    const url = queryParams.get('id')?.length
+      ? `${SWAPI_BASE_URL}/planets/${queryParams.get('id')}`
+      : `${SWAPI_BASE_URL}/planets?${queryParams}`
 
-    return NextResponse.json(data)
+    const apiResponse = await fetch(url)
+    const data = (await apiResponse.json()) as PlanetNetworkResponse
+
+    return NextResponse.json({ data }, { status: 200 })
   } catch (error) {
-    return NextResponse.json('Something went wrong!', { status: 500 })
+    return NextResponse.json(
+      {
+        message: 'Oops! Something went wrong while fetching planet data!',
+        error,
+      },
+      { status: 500 }
+    )
   }
 }

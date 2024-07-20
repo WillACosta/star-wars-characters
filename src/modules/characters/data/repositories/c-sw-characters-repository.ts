@@ -1,14 +1,23 @@
 import { StarWarsCharactersRepository } from '../../domain/repositories'
+import { CharactersDataSource } from '../datasources/characters-datasource'
 import { PersonNetworkModel, PlanetNetworkModel } from '../models'
-import { FakeApiService } from './fake-api'
 
 export class CStarWarsCharactersRepository
   implements StarWarsCharactersRepository
 {
-  dataSource: FakeApiService
+  dataSource: CharactersDataSource
 
-  constructor(dataSource: FakeApiService) {
+  constructor(dataSource: CharactersDataSource) {
     this.dataSource = dataSource
+  }
+
+  getPlanet(url: string): Promise<PlanetNetworkModel> {
+    try {
+      const id = url.split('https://swapi.dev/api/planets/')[1].replace('/', '')
+      return this.dataSource.getPlanetById(id)
+    } catch (error) {
+      throw new Error('Something went wrong!')
+    }
   }
 
   async getAllPeople(page: number): Promise<PersonNetworkModel[]> {

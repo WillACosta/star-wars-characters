@@ -2,8 +2,8 @@ export abstract class MockData {
   static people = [
     {
       name: 'Anakin S.',
-      height: '1',
-      mass: '1',
+      height: '172',
+      mass: '77',
       gender: 'male',
       homeworld: 'https://swapi.dev/api/planets/1',
       url: 'https://swapi.dev/api/people/1',

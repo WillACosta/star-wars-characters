@@ -3,13 +3,20 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const SWAPI_BASE_URL = process.env.SWAPI_BASE_URL
 
-export async function GET(_: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const response = await fetch(`${SWAPI_BASE_URL}/people`)
-    const data = (await response.json()) as PersonNetworkResponse
+    const queryParams = await request.nextUrl.searchParams
+    const apiResponse = await fetch(`${SWAPI_BASE_URL}/people?${queryParams}`)
+    const data = (await apiResponse.json()) as PersonNetworkResponse
 
-    return NextResponse.json(data)
+    return NextResponse.json({ data }, { status: 200 })
   } catch (error) {
-    return NextResponse.json('Something went wrong!', { status: 500 })
+    return NextResponse.json(
+      {
+        message: 'Oops! Something went wrong while fetching people data!',
+        error,
+      },
+      { status: 500 }
+    )
   }
 }

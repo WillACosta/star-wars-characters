@@ -1,8 +1,8 @@
 export interface Character {
   image: string
   name: string
-  height: number
-  mass: number
+  height: string
+  mass: string
   gender: string
   homeWorld: string
 }

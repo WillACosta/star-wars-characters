@@ -1,36 +1,33 @@
+import { capitalizeFirstLetter } from '@/modules/core/functions'
 import { AsyncUseCase } from '@/modules/core/types'
 import { Character } from '../models'
 import { StarWarsCharactersRepository } from '../repositories'
 
-type UseCaseType = AsyncUseCase<string, Character[]>
+type UseCaseType = AsyncUseCase<number, Character[]>
 
 export const getCharactersUseCase = (
   repository: StarWarsCharactersRepository
 ): UseCaseType => {
   return {
-    execute: async (page: string) => {
-      const currentPage = Number(page.length == 0 ? '1' : page)
-      if (isNaN(currentPage)) throw new Error('Invalid page')
+    execute: async (page: number) => {
+      if (page <= 0) throw new Error('Invalid page')
 
-      const people = await repository.getAllPeople(currentPage)
-      const planets = await repository.getAllPlanets(currentPage)
+      let results: Character[] = []
+      const people = await repository.getAllPeople(page)
 
-      const planetOf = (people: string) => {
-        return planets.find((e) => e.residents.includes(people))?.name
+      for (const person of people) {
+        const { name } = await repository.getPlanet(person.homeworld)
+        results.push({
+          image: 'https://picsum.photos/400/200',
+          name: person.name,
+          height: person.height,
+          mass: person.mass,
+          gender: person.gender.toUpperCase(),
+          homeWorld: capitalizeFirstLetter(name),
+        })
       }
 
-      const result: Character[] = people.map((person) => {
-        return {
-          image: 'https://picsum.photos/200',
-          name: person.name,
-          height: Number(person.height),
-          mass: Number(person.mass),
-          gender: person.gender,
-          homeWorld: planetOf(person.url) ?? 'not found',
-        }
-      })
-
-      return result
+      return results
     },
   }
 }

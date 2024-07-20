@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getShimmerPlaceholderForImage } from '../utils'
 
 type CardItemProps = {
   image: string
@@ -21,6 +22,7 @@ export default function CardItem({
     <div className='flex flex-col mb-8 max-sm:flex-row'>
       <Image
         className='mb-4 w-full max-sm:w-[115px] max-sm:h-[130px] max-sm:mr-3'
+        placeholder={getShimmerPlaceholderForImage(400, 200)}
         alt='Image representing a character'
         width={400}
         height={200}

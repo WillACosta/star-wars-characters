@@ -17,12 +17,14 @@ export const getCharactersUseCase = (
 
     for (const person of people) {
       const { name } = await repository.getPlanet(person.homeworld)
+      const id = crypto.randomUUID()
+
       results.push({
-        id: crypto.randomUUID(),
-        image: 'https://picsum.photos/400/200',
+        id,
+        image: `https://picsum.photos/seed/${id}/400/200`,
         name: person.name,
-        height: person.height,
-        mass: person.mass,
+        height: capitalizeFirstLetter(person.height),
+        mass: capitalizeFirstLetter(person.mass),
         gender: person.gender.toUpperCase(),
         homeWorld: capitalizeFirstLetter(name),
       })

@@ -12,6 +12,7 @@ import {
 import { Character } from '../../domain/models'
 import { getCharactersUseCase } from '../../domain/usecases'
 
+import LoadingSpinner from '@/components/atoms/LoadingSpinner'
 import Filter from '../components/Filter'
 
 type CharactersViewProps = {}
@@ -19,15 +20,20 @@ type CharactersViewProps = {}
 export default function CharactersView({}: CharactersViewProps) {
   const [characters, setCharacters] = useState<Character[]>([])
   const [page, setPage] = useState<number>(1)
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     async function loadMoreResults() {
+      setLoading(true)
+
       setCharacters(
         await getCharactersUseCase(
           charactersRepository,
           memoryManagerService
         ).execute(page)
       )
+
+      setLoading(false)
     }
 
     loadMoreResults()
@@ -61,7 +67,7 @@ export default function CharactersView({}: CharactersViewProps) {
         </div>
 
         <div className='flex justify-center'>
-          <Button label='Load More' onClick={nextPage} />
+          {loading ? <LoadingSpinner /> : <Button label='Load More' onClick={nextPage} />}
         </div>
       </div>
     </section>

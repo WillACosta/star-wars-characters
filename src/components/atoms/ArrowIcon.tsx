@@ -1,7 +1,11 @@
-export default function ArrowIcon() {
+type ArrowIconProps = {
+  className?: string
+}
+
+export default function ArrowIcon({ className }: ArrowIconProps) {
   return (
     <svg
-      className='fill-current text-app-gray-300'
+      className={`fill-current text-app-gray-300 ${className} ease-linear duration-200`}
       height='20'
       width='20'
       viewBox='0 0 20 20'

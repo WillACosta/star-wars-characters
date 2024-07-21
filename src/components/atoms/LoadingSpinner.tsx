@@ -14,7 +14,7 @@ export default function LoadingSpinner({ size = 25, className }: SpinnerProps) {
         viewBox='0 0 12 12'
         fill='none'
         stroke='currentColor'
-        strokeWidth={12}
+        strokeWidth={1.8}
         xmlns='http://www.w3.org/2000/svg'
         className='animate-rotate-pulse'
       >

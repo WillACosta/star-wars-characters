@@ -59,11 +59,11 @@ export default function DropdownMultiSelect({
           className='p-1 flex items-center justify-between select-none text-primary'
         >
           {getInputDisplayValue(placeHolder, onChange)}
-          <ArrowIcon />
+          <ArrowIcon className={showMenu ? 'rotate-180' : 'rotate-0'} />
         </div>
 
         {showMenu && (
-          <div className='absolute translate-x-1 w-full border border-app-gray-300 bg-white rounded overflow-auto max-h-[300px]'>
+          <div className='absolute translate-x-1 w-full border border-app-gray-300 bg-white rounded overflow-auto max-h-[300px] z-10 animate-fade-down animate-duration-500'>
             <div className='p-1 bg-app-gray-100'>
               <input
                 className='w-full p-1 border border-app-gray-300 rounded focus:border-primary focus:outline-primary'

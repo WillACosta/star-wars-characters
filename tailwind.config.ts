@@ -15,10 +15,10 @@ const config: Config = {
         'app-gray-300': '#969696',
         'app-gray-400': '#666666',
         'app-gray-500': '#333333',
-        'muted': '#757575',
+        muted: '#757575',
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animated')],
 }
 export default config

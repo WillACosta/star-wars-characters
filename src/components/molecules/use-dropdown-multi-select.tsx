@@ -7,6 +7,8 @@ export function useDropdownMultiSelect() {
   const [selectedValue, setSelectedValue] = useState<DropdownOption[]>([])
   const [searchValue, setSearchValue] = useState<string>('')
 
+  const [isFiltering, setIsFiltering] = useState<boolean>(false)
+
   const searchRef = useRef<HTMLInputElement>(null)
   const inputRef = useRef<HTMLDivElement>(null)
 
@@ -29,6 +31,14 @@ export function useDropdownMultiSelect() {
       window.removeEventListener('click', handleEvent as any)
     }
   }, [])
+
+  useEffect(() => {
+    if (selectedValue.length > 0) {
+      setIsFiltering(true)
+    } else {
+      setIsFiltering(false)
+    }
+  }, [selectedValue])
 
   function toggleMenuVisibility() {
     setShowMenu(!showMenu)
@@ -124,6 +134,6 @@ export function useDropdownMultiSelect() {
     inputRef,
     searchRef,
     setSelectedValue,
-    selectedValue,
+    isFiltering,
   }
 }

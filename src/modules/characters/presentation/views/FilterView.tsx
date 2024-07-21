@@ -3,7 +3,7 @@ import { useContext, useMemo } from 'react'
 import Divider from '@/components/atoms/Divider'
 import DropdownMultiSelect from '@/components/molecules/DropdownMultiSelect'
 
-import { CharactersContext } from '../utils'
+import { CharactersContext } from '../controller'
 
 type FilterViewProps = {
   options?: string[]

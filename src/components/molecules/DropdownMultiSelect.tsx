@@ -1,4 +1,8 @@
+import { useContext, useEffect } from 'react'
+
 import ArrowIcon from '@/components/atoms/ArrowIcon'
+import { CharactersContext } from '@/modules/characters/presentation/controller'
+
 import { Button } from '../atoms/Button'
 import { useDropdownMultiSelect } from './use-dropdown-multi-select'
 
@@ -32,8 +36,14 @@ export default function DropdownMultiSelect({
     inputRef,
     searchRef,
     setSelectedValue,
-    selectedValue,
+    isFiltering,
   } = useDropdownMultiSelect()
+
+  const { setIsFiltering } = useContext(CharactersContext)
+
+  useEffect(() => {
+    setIsFiltering(isFiltering)
+  }, [isFiltering, setIsFiltering])
 
   function clearFilters() {
     setSelectedValue([])
@@ -81,7 +91,7 @@ export default function DropdownMultiSelect({
       <Button
         className='max-sm:hidden'
         label='clear all'
-        disabled={selectedValue.length === 0}
+        disabled={!isFiltering}
         onClick={clearFilters}
       />
     </div>

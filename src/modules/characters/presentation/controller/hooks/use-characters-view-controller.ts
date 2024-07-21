@@ -15,24 +15,22 @@ import { Character } from '../../../domain/models'
 
 export function useCharactersViewController() {
   const [characters, setCharacters] = useState<Character[]>([])
-  const [filteredCharacters, setFilteredCharacters] =
-    useState<Character[]>(characters)
-
+  const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([])
   const [page, setPage] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>(false)
-  const [planets, setPlanets] = useState<string[]>([])
+  const [planetOptions, setPlanetOptions] = useState<string[]>([])
+  const [isFiltering, setIsFiltering] = useState<boolean>(false)
 
   useEffect(() => {
     async function loadMoreResults() {
       setLoading(true)
 
-      setCharacters(
-        await getCharactersUseCase(
-          charactersRepository,
-          memoryManagerService
-        ).execute(page)
-      )
+      const characters = await getCharactersUseCase(
+        charactersRepository,
+        memoryManagerService
+      ).execute(page)
 
+      setCharacters(characters)
       setLoading(false)
     }
 
@@ -40,9 +38,10 @@ export function useCharactersViewController() {
   }, [page])
 
   useEffect(() => {
+    if (characters.length == 0) return
     const availablePlanets = getAvailablePlanetsUseCase().execute(characters)
 
-    setPlanets(availablePlanets)
+    setPlanetOptions(availablePlanets)
     setFilteredCharacters(characters)
   }, [characters])
 
@@ -62,8 +61,10 @@ export function useCharactersViewController() {
     characters,
     loading,
     loadMoreResults,
-    planets,
+    planetOptions,
     filteredCharacters,
     filterResults,
+    isFiltering,
+    setIsFiltering,
   }
 }

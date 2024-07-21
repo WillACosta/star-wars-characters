@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { KeyboardEvent, useContext, useEffect } from 'react'
 
 import ArrowIcon from '@/components/atoms/ArrowIcon'
 import { CharactersContext } from '@/modules/characters/presentation/controller'
@@ -50,13 +50,32 @@ export default function DropdownMultiSelect({
     onClearAllFilters?.()
   }
 
+  function handleFilterBoxKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (e.key === 'Enter' || e.key === 'Space') {
+      toggleMenuVisibility()
+    }
+  }
+
+  function handleSelectedItemKeyDown(
+    e: KeyboardEvent<HTMLOptionElement>,
+    option: DropdownOption,
+    onChange: (value: DropdownOption[]) => void
+  ) {
+    if (e.key === 'Enter' || e.key === 'Space') {
+      onSelectItem(option, onChange)
+    }
+  }
+
   return (
     <div className='flex justify-between w-full'>
       <div className='text-left border-app-gray-200 border-b relative w-[300px]'>
         <div
+          tabIndex={1}
+          role='listbox'
           ref={inputRef}
           onClick={toggleMenuVisibility}
-          className='p-1 flex items-center justify-between select-none text-primary'
+          onKeyDown={handleFilterBoxKeyDown}
+          className='p-1 flex items-center justify-between text-primary'
         >
           {getInputDisplayValue(placeHolder, onChange)}
           <ArrowIcon className={showMenu ? 'rotate-180' : 'rotate-0'} />
@@ -66,6 +85,7 @@ export default function DropdownMultiSelect({
           <div className='absolute translate-x-1 w-full border border-app-gray-300 bg-white rounded overflow-auto max-h-[300px] z-10 animate-fade-down animate-duration-500'>
             <div className='p-1 bg-app-gray-100'>
               <input
+                name='filter'
                 className='w-full p-1 border border-app-gray-300 rounded focus:border-primary focus:outline-primary'
                 onChange={handleSearch}
                 value={searchValue}
@@ -74,23 +94,30 @@ export default function DropdownMultiSelect({
             </div>
 
             {getCurrentOptions(options).map((option: DropdownOption) => (
-              <div
-                onClick={() => onSelectItem(option, onChange)}
+              <option
+                tabIndex={2}
                 key={option.value}
                 className={`p-1 cursor-pointer ${
                   isItemSelected(option) && 'bg-primary text-white'
                 }`}
+                aria-selected={isItemSelected(option)}
+                onClick={() => onSelectItem(option, onChange)}
+                onKeyDown={(e) =>
+                  handleSelectedItemKeyDown(e, option, onChange)
+                }
               >
                 {option.label}
-              </div>
+              </option>
             ))}
           </div>
         )}
       </div>
 
       <Button
+        tabIndex={3}
         className='max-md:hidden'
         label='clear all'
+        aria-disabled={!isFiltering}
         disabled={!isFiltering}
         onClick={clearFilters}
       />

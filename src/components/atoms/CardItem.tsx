@@ -25,7 +25,10 @@ export default function CardItem({
   const { screenSize } = useScreenSize()
 
   return (
-    <div className='flex flex-col mb-8 max-sm:flex-row animate-fade-up'>
+    <div
+      className='flex flex-col mb-8 max-sm:flex-row animate-fade-up'
+      tabIndex={4}
+    >
       {screenSize.width <= 640 ? (
         <Image
           className='mb-4 w-full max-sm:w-[115px] max-sm:h-[130px] max-sm:mr-3'

@@ -43,7 +43,11 @@ export default function CharactersView() {
           <div className='flex justify-center'>
             {loading && <LoadingSpinner />}
             {!loading && !isFiltering && (
-              <Button label='Load More' onClick={loadMoreResults} />
+              <Button
+                tabIndex={5}
+                label='Load More'
+                onClick={loadMoreResults}
+              />
             )}
           </div>
         </div>

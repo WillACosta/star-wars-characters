@@ -41,6 +41,7 @@ export const getCharactersUseCase = (
 
       memoryManagerService.setData({ characters: results })
       const { characters } = memoryManagerService.getData()
+
       return characters
     },
   }

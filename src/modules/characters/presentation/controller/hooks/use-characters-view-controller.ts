@@ -17,9 +17,9 @@ export function useCharactersViewController() {
   const [characters, setCharacters] = useState<Character[]>([])
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([])
   const [page, setPage] = useState<number>(1)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [planetOptions, setPlanetOptions] = useState<string[]>([])
-  const [isFiltering, setIsFiltering] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>()
+  const [planetOptions, setPlanetOptions] = useState<string[]>()
+  const [isFiltering, setIsFiltering] = useState<boolean>()
 
   useEffect(() => {
     async function loadMoreResults() {
@@ -30,6 +30,9 @@ export function useCharactersViewController() {
         memoryManagerService
       ).execute(page)
 
+      const availablePlanets = getAvailablePlanetsUseCase().execute(characters)
+
+      setPlanetOptions(availablePlanets)
       setCharacters(characters)
       setLoading(false)
     }
@@ -38,10 +41,6 @@ export function useCharactersViewController() {
   }, [page])
 
   useEffect(() => {
-    if (characters.length == 0) return
-    const availablePlanets = getAvailablePlanetsUseCase().execute(characters)
-
-    setPlanetOptions(availablePlanets)
     setFilteredCharacters(characters)
   }, [characters])
 

@@ -52,21 +52,21 @@ export default function DropdownMultiSelect({
 
   return (
     <div className='flex justify-between w-full'>
-      <div className='text-left border-border border-b relative w-[300px]'>
+      <div className='text-left border-app-gray-200 border-b relative w-[300px]'>
         <div
           ref={inputRef}
           onClick={toggleMenuVisibility}
-          className='p-1 flex items-center justify-between select-none'
+          className='p-1 flex items-center justify-between select-none text-primary'
         >
           {getInputDisplayValue(placeHolder, onChange)}
           <ArrowIcon />
         </div>
 
         {showMenu && (
-          <div className='absolute translate-x-1 w-full border border-border bg-white rounded overflow-auto max-h-[300px]'>
-            <div className='p-1 bg-[#ededed]'>
+          <div className='absolute translate-x-1 w-full border border-app-gray-300 bg-white rounded overflow-auto max-h-[300px]'>
+            <div className='p-1 bg-app-gray-100'>
               <input
-                className='w-full p-1 border border-border rounded'
+                className='w-full p-1 border border-app-gray-300 rounded focus:border-primary focus:outline-primary'
                 onChange={handleSearch}
                 value={searchValue}
                 ref={searchRef}

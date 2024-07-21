@@ -29,7 +29,7 @@ export default function FilterView({ options = [] }: FilterViewProps) {
 
       <div className='container-fluid mx-auto px-[50px]'>
         <div className='flex items-center justify-between w-full py-[26px]'>
-          <label className='mr-3 w-[100px]'>Filter By:</label>
+          <label className='mr-3 w-[100px] text-app-gray-400'>Filter By:</label>
 
           <DropdownMultiSelect
             placeHolder='All'

@@ -30,26 +30,26 @@ export default function CardItem({
       />
 
       <div className='py-[13px]'>
-        <p className='text-[20px]'>{name}</p>
-        <p className='text-[16px]'>{planet}</p>
+        <p className='text-[20px] text-black'>{name}</p>
+        <p className='text-[16px] text-black'>{planet}</p>
       </div>
 
-      <ul className='text-gray max-sm:hidden'>
+      <ul className='text-muted max-sm:hidden'>
         <li className='flex items-center'>
           <span className='mr-2 after'>HEIGHT</span>
-          <span className='w-1 h-1 mr-2 bg-gray rounded-full'></span>
+          <span className='w-1 h-1 mr-2 bg-muted rounded-full'></span>
           <span>{height}</span>
         </li>
 
         <li className='flex items-center'>
           <span className='mr-2 after'>MASS</span>
-          <span className='w-1 h-1 mr-2 bg-gray rounded-full'></span>
+          <span className='w-1 h-1 mr-2 bg-muted rounded-full'></span>
           <span>{mass}</span>
         </li>
 
         <li className='flex items-center'>
           <span className='mr-2 after'>GENDER</span>
-          <span className='w-1 h-1 mr-2 bg-gray rounded-full'></span>
+          <span className='w-1 h-1 mr-2 bg-muted rounded-full'></span>
           <span>{gender}</span>
         </li>
       </ul>

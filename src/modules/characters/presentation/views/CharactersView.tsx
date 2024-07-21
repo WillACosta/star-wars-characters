@@ -26,7 +26,7 @@ export default function CharactersView() {
         <FilterView options={planetOptions} />
 
         <div className='container-fluid mx-auto px-[50px] pb-10 mt-12'>
-          <h2 className='text-[34px] font-light mb-5 ease-linear duration-100'>
+          <h2 className='text-[34px] font-light mb-5 ease-linear duration-100 text-app-gray-500'>
             {isFiltering ? 'Filtered Characters' : 'All Characters'}
           </h2>
 

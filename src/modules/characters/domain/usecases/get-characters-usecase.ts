@@ -22,6 +22,7 @@ export const getCharactersUseCase = (
       results.push({
         id,
         image: `https://picsum.photos/seed/${id}/400/200`,
+        mobileImage: `https://picsum.photos/seed/${id}/115/130`,
         name: person.name,
         height: capitalizeFirstLetter(person.height),
         mass: capitalizeFirstLetter(person.mass),

@@ -89,7 +89,7 @@ export default function DropdownMultiSelect({
       </div>
 
       <Button
-        className='max-sm:hidden'
+        className='max-md:hidden'
         label='clear all'
         disabled={!isFiltering}
         onClick={clearFilters}

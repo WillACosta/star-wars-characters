@@ -1,14 +1,9 @@
-const DEFAULT_SIZE = 25
-
 type SpinnerProps = {
   size?: number
   className?: string
 }
 
-export default function LoadingSpinner({
-  size = DEFAULT_SIZE,
-  className,
-}: SpinnerProps) {
+export default function LoadingSpinner({ size = 25, className }: SpinnerProps) {
   return (
     <span
       className={`text-gray-300 dark:text-gray-600 inline-flex w-[${size}px] h-[${size}px] animate-spin ${className}`}
@@ -19,7 +14,7 @@ export default function LoadingSpinner({
         viewBox='0 0 12 12'
         fill='none'
         stroke='currentColor'
-        strokeWidth={(DEFAULT_SIZE / size) * 2}
+        strokeWidth={12}
         xmlns='http://www.w3.org/2000/svg'
         className='animate-rotate-pulse'
       >

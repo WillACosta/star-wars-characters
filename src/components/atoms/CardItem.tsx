@@ -1,13 +1,17 @@
 import Image from 'next/image'
-import { getShimmerPlaceholderForImage } from '../utils'
+
+import { getShimmerPlaceholderForImage, useScreenSize } from '../utils'
 
 type CardItemProps = {
-  image: string
+  image: {
+    default: string
+    mobile: string
+  }
   name: string
   height: string
   mass: string
   gender: string
-  planet: string
+  homeWorld: string
 }
 
 export default function CardItem({
@@ -16,22 +20,35 @@ export default function CardItem({
   height,
   mass,
   gender,
-  planet,
+  homeWorld,
 }: CardItemProps) {
+  const { screenSize } = useScreenSize()
+
   return (
     <div className='flex flex-col mb-8 max-sm:flex-row'>
-      <Image
-        className='mb-4 w-full max-sm:w-[115px] max-sm:h-[130px] max-sm:mr-3'
-        placeholder={getShimmerPlaceholderForImage(400, 200)}
-        alt='Image representing a character'
-        width={400}
-        height={200}
-        src={image}
-      />
+      {screenSize.width <= 640 ? (
+        <Image
+          className='mb-4 w-full max-sm:w-[115px] max-sm:h-[130px] max-sm:mr-3'
+          placeholder={getShimmerPlaceholderForImage(115, 130)}
+          alt='Image representing a character'
+          width={115}
+          height={130}
+          src={image.mobile}
+        />
+      ) : (
+        <Image
+          className='mb-4 w-full'
+          placeholder={getShimmerPlaceholderForImage(400, 200)}
+          alt='Image representing a character'
+          width={400}
+          height={200}
+          src={image.default}
+        />
+      )}
 
       <div className='py-[13px]'>
         <p className='text-[20px] text-black'>{name}</p>
-        <p className='text-[16px] text-black'>{planet}</p>
+        <p className='text-[16px] text-black'>{homeWorld}</p>
       </div>
 
       <ul className='text-muted max-sm:hidden'>

@@ -45,6 +45,8 @@ export function useCharactersViewController() {
           type: 'error',
           message: 'Oops! Something went wrong, try again later!',
         })
+
+        setLoading(false)
       }
     }
 

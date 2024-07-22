@@ -7,6 +7,9 @@ import LoadingSpinner from '@/components/atoms/LoadingSpinner'
 import { CharactersContext, useCharactersViewController } from '../controller'
 import FilterView from './FilterView'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 export default function CharactersView() {
   const {
     loading,
@@ -53,6 +56,8 @@ export default function CharactersView() {
           </div>
         </div>
       </section>
+
+      <ToastContainer />
     </CharactersContext.Provider>
   )
 }

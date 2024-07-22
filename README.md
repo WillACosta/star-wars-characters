@@ -19,14 +19,12 @@ This project is built with Next.js that displays information about characters fr
 
 # Features and Architecture
 
-This project is built on top of concepts like `Clean Architecture` and `Separation of Concerns`. We have a main feature of showing the characters from Star Wars universe provided by **Star Wars API**, also, we provide an option to filter the results by planet/home-world of the characters.
+This project is built on top of concepts like [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and [Separation of Concerns](https://www.geeksforgeeks.org/separation-of-concerns-soc/). We have a main feature of showing the characters from Star Wars universe provided by **Star Wars API**, also, we provide an option to filter the results by planet/home-world of the characters.
 
 This project uses a modularization approach, to organize and follow the best architecture guidelines, as you can see in the representation of the main layers below:
 
 <br/>
-<center>
-  <img src="docs/images/layers.png">
-</center>
+  <img align="center" src="docs/images/layers.png">
 <br/>
 
 Take a look into how the app's folder structure looks like:

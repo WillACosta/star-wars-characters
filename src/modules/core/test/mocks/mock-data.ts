@@ -23,8 +23,8 @@ export abstract class MockData {
   static characters = [
     {
       id: 'dcd8c803-d9d1-464f-86b3-98a734c3a316',
-      image: 'https://picsum.photos/400/200',
-      mobileImage: 'https://picsum.photos/115/130',
+      image: 'https://picsum.photos/seed/dcd8c803-d9d1-464f-86b3-98a734c3a316/400/200',
+      mobileImage: 'https://picsum.photos/seed/dcd8c803-d9d1-464f-86b3-98a734c3a316/115/130',
       name: 'Anakin S.',
       height: '172',
       mass: '77',

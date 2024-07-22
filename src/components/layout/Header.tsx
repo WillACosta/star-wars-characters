@@ -7,7 +7,7 @@ export default function Header() {
         </h1>
         <p className='sm:text-base md:text-[22px] lg:text-[22px] font-light text-app-gray-400'>
           Browse for your favorite characters from the Star Wars universe. You
-          can also filter the results by name or planet.
+          can also filter the results by planet name.
         </p>
       </div>
     </div>

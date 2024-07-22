@@ -7,7 +7,7 @@ export default function LoadingSpinner({ size = 25, className }: SpinnerProps) {
   return (
     <div>
       <span
-        className={`text-gray-300 dark:text-gray-600 flex items-center w-full justify-center ${className}`}
+        className={`text-gray-300 dark:text-gray-600 flex flex-col items-center w-full justify-center ${className}`}
       >
         <span
           role='status'

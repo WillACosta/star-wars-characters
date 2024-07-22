@@ -44,6 +44,7 @@ export default function CharactersView() {
             {loading && <LoadingSpinner />}
             {!loading && !isFiltering && (
               <Button
+                expanded
                 tabIndex={5}
                 label='Load More'
                 onClick={loadMoreResults}

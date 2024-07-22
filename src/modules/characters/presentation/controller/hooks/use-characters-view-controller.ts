@@ -11,6 +11,7 @@ import {
 } from '../../../domain/usecases'
 
 import { DropdownOption } from '@/components/molecules'
+import { useAppToast } from '@/components/utils'
 import { Character } from '../../../domain/models'
 
 export function useCharactersViewController() {
@@ -21,20 +22,30 @@ export function useCharactersViewController() {
   const [planetOptions, setPlanetOptions] = useState<string[]>()
   const [isFiltering, setIsFiltering] = useState<boolean>()
 
+  const { showToastError } = useAppToast()
+
   useEffect(() => {
     async function loadMoreResults() {
-      setLoading(true)
+      try {
+        setLoading(true)
 
-      const characters = await getCharactersUseCase(
-        charactersRepository,
-        memoryManagerService
-      ).execute(page)
+        const characters = await getCharactersUseCase(
+          charactersRepository,
+          memoryManagerService
+        ).execute(page)
 
-      const availablePlanets = getAvailablePlanetsUseCase().execute(characters)
+        const availablePlanets =
+          getAvailablePlanetsUseCase().execute(characters)
 
-      setPlanetOptions(availablePlanets)
-      setCharacters(characters)
-      setLoading(false)
+        setPlanetOptions(availablePlanets)
+        setCharacters(characters)
+        setLoading(false)
+      } catch {
+        showToastError({
+          type: 'error',
+          message: 'Oops! Something went wrong, try again later!',
+        })
+      }
     }
 
     loadMoreResults()

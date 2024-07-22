@@ -1,0 +1,35 @@
+name: 'Code Quality Validation'
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  code_quality:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup tools
+        run: npm i -g pnpm
+
+      - name: Get dependencies
+        run: pnpm install
+
+      - name: Run lint validations
+        run: pnpm lint
+
+      - name: Run unit tests
+        run: pnpm test
+
+      - name: Build application
+        run: pnpm build

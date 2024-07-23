@@ -1,10 +1,12 @@
 'use client'
 
-import { Button } from '@/components/atoms/Button'
+import { CharactersContext, useCharactersViewController } from '../controller'
+
+import Button from '@/components/atoms/Button'
 import CardItem from '@/components/atoms/CardItem'
 import LoadingSpinner from '@/components/atoms/LoadingSpinner'
+import ToastContainer from '@/components/atoms/ToastContainer'
 
-import { CharactersContext, useCharactersViewController } from '../controller'
 import FilterView from './FilterView'
 
 export default function CharactersView() {
@@ -53,6 +55,8 @@ export default function CharactersView() {
           </div>
         </div>
       </section>
+
+      <ToastContainer />
     </CharactersContext.Provider>
   )
 }

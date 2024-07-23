@@ -1,4 +1,5 @@
-import { CharactersDataSource } from '../../data/datasources/characters-datasource'
+import { injectable } from 'inversify'
+import { CharactersDataSource } from '../../data/data-sources/characters-datasource'
 
 import {
   PersonNetworkResponse,
@@ -6,6 +7,7 @@ import {
   PlanetNetworkResponse,
 } from '../../data/models'
 
+@injectable()
 export class CCharactersDataSource implements CharactersDataSource {
   async getAllPlanets(page: number): Promise<PlanetNetworkResponse> {
     const response = await fetch(`/api/planets?page=${page}`, { method: 'GET' })

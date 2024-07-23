@@ -1,10 +1,10 @@
 import { KeyboardEvent, useContext, useEffect } from 'react'
 
-import ArrowIcon from '@/components/atoms/ArrowIcon'
 import { CharactersContext } from '@/modules/characters/presentation/controller'
-
-import { Button } from '../atoms/Button'
 import { useDropdownMultiSelect } from './use-dropdown-multi-select'
+
+import ArrowIcon from '@/components/atoms/ArrowIcon'
+import Button from '../atoms/Button'
 
 export type DropdownOption = {
   label: string

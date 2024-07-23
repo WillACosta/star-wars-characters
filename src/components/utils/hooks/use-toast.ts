@@ -6,7 +6,7 @@ type ToastProps = {
 }
 
 export function useAppToast() {
-  function showToastError({ type, message }: ToastProps) {
+  function showToast({ type, message }: ToastProps) {
     toast(message, {
       position: 'top-right',
       autoClose: 5000,
@@ -17,5 +17,5 @@ export function useAppToast() {
     })
   }
 
-  return { showToastError }
+  return { showToast }
 }

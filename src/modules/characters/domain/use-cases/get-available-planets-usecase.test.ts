@@ -7,6 +7,7 @@ describe('getAvailablePlanetsUseCase ', () => {
       {
         id: 'dcd8c803-d9d1-464f-86b3-98a734c3a316',
         image: 'https://picsum.photos/400/200',
+        mobileImage: 'https://picsum.photos/400/200',
         name: 'Anakin S.',
         height: '172',
         mass: '77',
@@ -16,6 +17,7 @@ describe('getAvailablePlanetsUseCase ', () => {
       {
         id: 'dcd8c803-d9d1-464f-86b3-98a734c3a316',
         image: 'https://picsum.photos/400/200',
+        mobileImage: 'https://picsum.photos/400/200',
         name: 'Darth Vader',
         height: '172',
         mass: '77',
@@ -25,6 +27,7 @@ describe('getAvailablePlanetsUseCase ', () => {
       {
         id: 'dcd8c803-d9d1-464f-86b3-98a734c3a316',
         image: 'https://picsum.photos/400/200',
+        mobileImage: 'https://picsum.photos/400/200',
         name: 'Leia Organa',
         height: '172',
         mass: '77',

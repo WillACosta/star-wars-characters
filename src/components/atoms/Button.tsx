@@ -5,7 +5,7 @@ type ButtonProps = {
   expanded?: boolean
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export function Button({
+export default function Button({
   label,
   className,
   expanded = false,

@@ -1,6 +1,6 @@
 ### @star-wars-characters
 
-This project is built with Next.js that displays information about characters from the Star Wars universe. You can browse through a list of characters, view detailed information about each of them, and filter characters home world/planets. The application fetches data from [Star Wars API](https://swapi.dev/) and presents it in an easy-to-navigate interface.
+This is a Next.js application that displays information about characters from the Star Wars universe. You can browse through a list of characters, view detailed information about each of them, and filter characters by planets. The application fetches data from [Star Wars API](https://swapi.dev/) and presents it in an easy-to-navigate interface.
 
 Production URL: https://star-wars-characters-five.vercel.app/
 
@@ -8,7 +8,6 @@ Production URL: https://star-wars-characters-five.vercel.app/
 
 - **[Features and Architecture](#features-and-architecture)**
 - **[Technical Resources](#technical-resources)**
-- **[Possible Improvements](#possible-improvements)**
 - **[Getting Started](#getting-started)**
   - **[Running unit tests](#running-unit-tests)**
 
@@ -26,7 +25,7 @@ This project is built on top of concepts like [Clean Architecture](https://blog.
 This project uses a modularization approach, to organize and follow the best architecture guidelines, as you can see in the representation of the main layers below:
 
 <br/>
-  <img align="center" src="docs/images/layers.png">
+  <img align="center" src="docs/images/arch_layers.png">
 <br/>
 
 Take a look into how the app's folder structure looks like:
@@ -52,24 +51,6 @@ Take a look into how the app's folder structure looks like:
 │        └── ...
 .
 ```
-
-# Possible Improvements
-
-### Better API Results & Contracts
-
-As the application grown, we could implement a better approach for the API response to be consistent with the data the frontend needs. In this case, the name of the planet could already be included in the request of each character. By using a BFF (Backend for Frontend), for example, the idea is always to reduce the workload and keep business logic centralized in the backend.
-
-### About Tailwind CSS Styles
-
-The usage of Tailwind CSS First Class strategy is very interesting because it uses the concept of Declarative UI. I first encountered this concept in Flutter and Jetpack Compose, which made me think about the tools we have for the web. With Tailwind, we can quickly "dictate" how the UI will look, and we have very robust control to achieve a "pixel-perfect" state and replicate UI prototypes.
-
-One of the downsides, which is widely discussed in the community, is the excessive use of classes "polluting" the HTML. However, this can be addressed nowadays by using a feature in Tailwind called `@apply`, which allows us to define a set of classes and use as a single name.
-
-### E2E Testing
-
-UI test is a very important quality aspect of a good application, to prevent possible issues and improve the user experience, to achieve this we could implement a set of E2E (End-to-End) tests using tools like [Cypress](https://www.cypress.io/) and implementing automated tests. Also, we could integrate it with CI/CD workflows.
-
-<br>
 
 # Technical Resources
 

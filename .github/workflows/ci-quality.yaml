@@ -3,7 +3,8 @@ name: 'Code Quality Validation'
 on:
   push:
     branches:
-      - 'main'
+      - 'feature/**'
+      - 'refactor/**'
 
 jobs:
   code_quality:
@@ -18,6 +19,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
 
       - name: Setup tools
         run: npm i -g pnpm

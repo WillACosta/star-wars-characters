@@ -1,6 +1,12 @@
-import { getAvailablePlanetsUseCase } from './get-available-planets-usecase'
+import { GetAvailablePlanetsUseCase } from './get-available-planets-usecase'
 
 describe('getAvailablePlanetsUseCase ', () => {
+  let getAvailablePlanetsUseCase: GetAvailablePlanetsUseCase
+
+  beforeEach(() => {
+    getAvailablePlanetsUseCase = new GetAvailablePlanetsUseCase()
+  })
+
   test('should return a list of available planets excluding duplicates', () => {
     const expectedResults = ['Tatooine', 'Alderaan']
     const characters = [
@@ -36,7 +42,7 @@ describe('getAvailablePlanetsUseCase ', () => {
       },
     ]
 
-    const actual = getAvailablePlanetsUseCase().execute(characters)
+    const actual = getAvailablePlanetsUseCase.execute(characters)
     expect(actual).toEqual(expectedResults)
   })
 })

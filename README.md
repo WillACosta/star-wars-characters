@@ -20,7 +20,7 @@ Production URL: https://star-wars-characters-five.vercel.app/
 
 # Features and Architecture
 
-This project is built on top of concepts like [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and [Separation of Concerns](https://www.geeksforgeeks.org/separation-of-concerns-soc/). We have a main feature of showing the characters from Star Wars universe provided by **Star Wars API**, also, we provide an option to filter the results by planet/home-world of the characters.
+This project is built on top of concepts like [Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html) and [Separation of Concerns](https://www.geeksforgeeks.org/separation-of-concerns-soc/). We have a main `feature` that shows a list of the characters from Star Wars universe provided by **Star Wars API**, also we provide an option to filter the results by planets.
 
 This project uses a modularization approach, to organize and follow the best architecture guidelines, as you can see in the representation of the main layers below:
 
@@ -32,19 +32,18 @@ Take a look into how the app's folder structure looks like:
 
 ```
 .
-├── app                   # app level (framework)
+├── app                    # app level (framework)
 │
-├── components            # common ui components
+├── components             # common ui components
 │   ├── atoms
 │   ├── layout
 │   └── molecules
 │
 ├── modules
 │   ├── characters
-│   │    ├── data
+│   │    ├── data           # centralize changes in data and resolves external sources
 │   │    ├── di             # dependency injection container
 │   │    ├── domain         # business rules and models
-│   │    ├── infra          # class adapters for external services
 │   │    └── presentation   # ui code for this module
 │   │
 │   └─── core
@@ -54,7 +53,7 @@ Take a look into how the app's folder structure looks like:
 
 # Technical Resources
 
-- Clean architecture, SOLID and atomic design concepts
+- Layered architecture, SOLID and atomic design concepts
 - Usage of a simple state management with native hooks
 - Unit tests with Jest
 - Responsive version using Media Query rules

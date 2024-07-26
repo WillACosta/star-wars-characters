@@ -40,7 +40,7 @@ describe('GetCharactersUseCase Tests', () => {
       'Invalid page'
     )
 
-    expect(repository.getPlanet).not.toHaveBeenCalled()
+    expect(repository.getPlanetDetails).not.toHaveBeenCalled()
     expect(repository.getAllPeople).not.toHaveBeenCalled()
   })
 
@@ -49,7 +49,7 @@ describe('GetCharactersUseCase Tests', () => {
     const expectedResults = MockData.characters
 
     repository.getAllPeople.mockResolvedValue(MockData.people)
-    repository.getPlanet.mockResolvedValue(MockData.planets[0])
+    repository.getPlanetDetails.mockResolvedValue(MockData.planets[0])
     memoryManagerService.getData.mockReturnValue({
       characters: expectedResults,
     })
@@ -57,7 +57,6 @@ describe('GetCharactersUseCase Tests', () => {
     const actual = await getCharactersUseCase.execute(1)
 
     expect(actual).toEqual(expectedResults)
-
     expect(memoryManagerService.setData).toHaveBeenCalledWith({
       characters: expectedResults,
     })

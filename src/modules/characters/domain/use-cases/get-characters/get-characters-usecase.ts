@@ -1,12 +1,13 @@
 import { inject, injectable } from 'inversify'
 
+import { DI_TYPES } from '@/modules/characters/di/di-types'
 import { capitalizeFirstLetter } from '@/modules/core/functions'
 import { AsyncUseCase } from '@/modules/core/types'
 
-import type { MemoryManagerService } from '../../data/services'
-import { DI_TYPES } from '../../di/di-types'
-import { Character } from '../models'
-import type { StarWarsCharactersRepository } from '../repositories'
+import type { StarWarsCharactersRepository } from '@/modules/characters/data/repositories'
+import type { MemoryManagerService } from '@/modules/characters/data/services'
+
+import { Character } from '../../models'
 
 type UseCaseType = AsyncUseCase<number, Character[]>
 
@@ -38,7 +39,7 @@ export class GetCharactersUseCase implements UseCaseType {
     const people = await this._repository.getAllPeople(page)
 
     for (const person of people) {
-      const { name } = await this._repository.getPlanet(person.homeworld)
+      const { name } = await this._repository.getPlanetDetails(person.homeworld)
       const id = this._crypto.randomUUID()
 
       results.push({

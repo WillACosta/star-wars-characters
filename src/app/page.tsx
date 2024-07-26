@@ -1,11 +1,11 @@
 import Header from '@/components/layout/Header'
-import CharactersView from '@/modules/characters/presentation/views/CharactersView'
+import ServerCharactersView from '@/modules/characters/presentation/views/ServerCharactersView'
 
 export default function Home() {
   return (
     <main>
       <Header />
-      <CharactersView />
+      <ServerCharactersView />
     </main>
   )
 }

@@ -1,18 +1,22 @@
 import { injectable } from 'inversify'
-import { CharactersDataSource } from '../../data/data-sources/characters-datasource'
 
 import {
+  PersonNetworkModel,
   PersonNetworkResponse,
   PlanetNetworkModel,
   PlanetNetworkResponse,
 } from '../../data/models'
 
+import { StarWarsCharactersRepository } from './sw-characters-repository'
+
 @injectable()
-export class FakeCharactersDataSource implements CharactersDataSource {
-  async getAllPlanets(_: number): Promise<PlanetNetworkResponse> {
+export class StarWarsCharactersFakeRepository
+  implements StarWarsCharactersRepository
+{
+  async getAllPlanets(_: number): Promise<PlanetNetworkModel[]> {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    return Promise.resolve({
+    const apiResponse = {
       count: 1,
       next: 'https://swapi.dev/api/planets/?page=2',
       previous: null,
@@ -34,10 +38,12 @@ export class FakeCharactersDataSource implements CharactersDataSource {
           ],
         },
       ],
-    } as PlanetNetworkResponse)
+    } as PlanetNetworkResponse
+
+    return Promise.resolve(apiResponse.results)
   }
 
-  async getPlanetById(_: string): Promise<PlanetNetworkModel> {
+  async getPlanetDetails(_: string): Promise<PlanetNetworkModel> {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     return Promise.resolve({
@@ -47,10 +53,10 @@ export class FakeCharactersDataSource implements CharactersDataSource {
     } as PlanetNetworkModel)
   }
 
-  async getAllPeople(_: number): Promise<PersonNetworkResponse> {
+  async getAllPeople(_: number): Promise<PersonNetworkModel[]> {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    return Promise.resolve({
+    const apiResponse = {
       count: 1,
       next: 'https://swapi.dev/api/planets/?page=2',
       previous: null,
@@ -292,6 +298,8 @@ export class FakeCharactersDataSource implements CharactersDataSource {
           url: 'https://swapi.dev/api/people/10/',
         },
       ],
-    } as PersonNetworkResponse)
+    } as PersonNetworkResponse
+
+    return Promise.resolve(apiResponse.results)
   }
 }

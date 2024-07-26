@@ -9,14 +9,28 @@ import type { Config } from 'jest'
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  setupFiles: ['./src/modules/core/di/inversify.config.ts'],
+  setupFiles: ['./src/modules/core/test/inversify-setup-jest.ts'],
   clearMocks: true,
 
   collectCoverage: true,
-  // collectCoverageFrom: undefined,
+  verbose: false,
   coverageDirectory: 'coverage',
-  coveragePathIgnorePatterns: ['/node_modules/'],
   coverageProvider: 'v8',
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    'test-config',
+    'interfaces',
+    '.mock.ts',
+    'sw-characters-fake-repository.ts',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
 
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',

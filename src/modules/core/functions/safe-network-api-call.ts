@@ -3,7 +3,8 @@ export async function safeNetworkApiCall<T>(
 ): Promise<T> {
   try {
     const response = await callback()
-    return await response.json()
+    const { data } = await response.json()
+    return data
   } catch (error) {
     throw new Error(`Request complete with an error: ${error}`)
   }

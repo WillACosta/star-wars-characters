@@ -1,39 +1,36 @@
 import { ContainerModule, interfaces } from 'inversify'
 
-import { CharactersDataSource } from '../data/data-sources/characters-datasource'
-import { CStarWarsCharactersRepository } from '../data/repositories'
-import { MemoryManagerService } from '../data/services'
-import { StarWarsCharactersRepository } from '../domain/repositories'
-
 import {
   GetAvailablePlanetsUseCase,
   GetCharactersUseCase,
 } from '../domain/use-cases'
 
-import { CCharactersDataSource } from '../infra/data-sources'
-import { FakeCharactersDataSource } from '../infra/data-sources/fake-characters-datasource'
-import { CMemoryManagerService } from '../infra/services'
 import { DI_TYPES } from './di-types'
+
+import {
+  StarWarsCharactersFakeRepository,
+  StarWarsCharactersRemoteRepository,
+  StarWarsCharactersRepository,
+} from '../data/repositories'
+
+import { MemoryManagerService } from '../data/services'
+import { CMemoryManagerService } from '../data/services/c-memory-manager-service'
 
 function initializeModule(bind: interfaces.Bind) {
   const env = process.env.NODE_ENV
 
   if (env === 'test') {
-    bind<CharactersDataSource>(DI_TYPES.CharactersDataSource).to(
-      FakeCharactersDataSource
-    )
+    bind<StarWarsCharactersRepository>(
+      DI_TYPES.StarWarsCharactersRepository
+    ).to(StarWarsCharactersFakeRepository)
   } else {
-    bind<CharactersDataSource>(DI_TYPES.CharactersDataSource).to(
-      CCharactersDataSource
-    )
+    bind<StarWarsCharactersRepository>(
+      DI_TYPES.StarWarsCharactersRepository
+    ).to(StarWarsCharactersRemoteRepository)
   }
 
   bind<MemoryManagerService>(DI_TYPES.MemoryManagerService).to(
     CMemoryManagerService
-  )
-
-  bind<StarWarsCharactersRepository>(DI_TYPES.StarWarsCharactersRepository).to(
-    CStarWarsCharactersRepository
   )
 
   bind<GetCharactersUseCase>(DI_TYPES.GetCharactersUseCase).to(

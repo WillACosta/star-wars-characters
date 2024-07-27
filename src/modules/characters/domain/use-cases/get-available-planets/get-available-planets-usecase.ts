@@ -1,7 +1,9 @@
 import { injectable } from 'inversify'
 
 import { SyncUseCase } from '@/modules/core/types'
-import { Character } from '../models'
+import { Character } from '../../models'
+
+import 'reflect-metadata'
 
 type UseCaseType = SyncUseCase<Character[], string[]>
 

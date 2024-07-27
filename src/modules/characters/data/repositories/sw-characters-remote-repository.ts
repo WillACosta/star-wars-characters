@@ -1,6 +1,9 @@
 import { injectable } from 'inversify'
 
-import { safeNetworkApiCall } from '@/modules/core/functions'
+import {
+  extractIdFromSWApiResourceUrl,
+  safeNetworkApiCall,
+} from '@/modules/core/functions'
 
 import {
   PersonNetworkModel,
@@ -20,7 +23,7 @@ export class StarWarsCharactersRemoteRepository
   private _baseUrl = process.env.APP_SERVER
 
   async getPlanetDetails(url: string): Promise<PlanetNetworkModel> {
-    const id = url.split('https://swapi.dev/api/planets/')[1].replace('/', '')
+    const id = extractIdFromSWApiResourceUrl(url, 'planets')
 
     return safeNetworkApiCall<PlanetNetworkModel>(() =>
       fetch(`/api/planets/${id}`, {

@@ -1,7 +1,10 @@
 import { inject, injectable } from 'inversify'
 
 import { DI_TYPES } from '@/modules/characters/di/di-types'
-import { capitalizeFirstLetter } from '@/modules/core/functions'
+import {
+  capitalizeFirstLetter,
+  extractIdFromSWApiResourceUrl,
+} from '@/modules/core/functions'
 import { AsyncUseCase } from '@/modules/core/types'
 
 import type { StarWarsCharactersRepository } from '@/modules/characters/data/repositories'
@@ -18,10 +21,7 @@ export class GetCharactersUseCase implements UseCaseType {
     private _repository: StarWarsCharactersRepository,
 
     @inject(DI_TYPES.MemoryManagerService)
-    private _memoryManagerService: MemoryManagerService,
-
-    @inject(DI_TYPES.Crypto)
-    private _crypto: Crypto
+    private _memoryManagerService: MemoryManagerService
   ) {}
 
   async execute(params: number): Promise<Character[]> {
@@ -40,12 +40,11 @@ export class GetCharactersUseCase implements UseCaseType {
 
     for (const person of people) {
       const { name } = await this._repository.getPlanetDetails(person.homeworld)
-      const id = this._crypto.randomUUID()
+      const id = extractIdFromSWApiResourceUrl(person.url, 'people')
 
       results.push({
         id,
-        image: `https://picsum.photos/seed/${id}/400/200`,
-        mobileImage: `https://picsum.photos/seed/${id}/115/130`,
+        image: `/images/characters/${id}.jpg`,
         name: person.name,
         height: capitalizeFirstLetter(person.height),
         mass: capitalizeFirstLetter(person.mass),

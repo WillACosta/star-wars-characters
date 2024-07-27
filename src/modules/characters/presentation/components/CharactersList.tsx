@@ -8,12 +8,8 @@ type CharactersListProps = {
 export default function CharactersList({ items }: CharactersListProps) {
   return (
     <div className='py-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5'>
-      {items.map(({ id, image, mobileImage, ...rest }) => (
-        <CardItem
-          key={id}
-          image={{ default: image, mobile: mobileImage }}
-          {...rest}
-        />
+      {items.map(({ id, ...rest }) => (
+        <CardItem key={id} {...rest} />
       ))}
     </div>
   )

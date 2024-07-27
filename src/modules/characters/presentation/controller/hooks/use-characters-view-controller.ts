@@ -15,7 +15,7 @@ import {
 export function useCharactersViewController() {
   const [characters, setCharacters] = useState<Character[]>([])
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([])
-  const [page, setPage] = useState<number>()
+  const [page, setPage] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>()
   const [planetOptions, setPlanetOptions] = useState<string[]>()
   const [isFiltering, setIsFiltering] = useState<boolean>()
@@ -36,7 +36,7 @@ export function useCharactersViewController() {
       try {
         setLoading(true)
 
-        const characters = await getCharactersUseCase.execute(page ?? 1)
+        const characters = await getCharactersUseCase.execute(page)
         const availablePlanets = getAvailablePlanetsUseCase.execute(characters)
 
         setPlanetOptions(availablePlanets)
@@ -56,7 +56,7 @@ export function useCharactersViewController() {
   }, [page])
 
   function loadMoreResults() {
-    setPage((old) => old ?? 0 + 1)
+    setPage((old) => old + 1)
   }
 
   function filterResults(items: DropdownOption[]) {

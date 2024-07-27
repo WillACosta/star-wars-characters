@@ -22,8 +22,7 @@ export default function CharactersView() {
 
   return (
     <CharactersContext.Provider
-      value={{ filteredCharacters, filterResults, setIsFiltering }}
-    >
+      value={{ filteredCharacters, filterResults, setIsFiltering }}>
       <section className='mt-12'>
         <FilterView options={planetOptions} />
 

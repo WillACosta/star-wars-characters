@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const SWAPI_BASE_URL = process.env.SWAPI_BASE_URL
 
-export async function GET(request: NextRequest) {
+export async function GET({ nextUrl }: NextRequest) {
   try {
-    const queryParams = await request.nextUrl.searchParams
+    const queryParams = await nextUrl.searchParams
     const apiResponse = await fetch(`${SWAPI_BASE_URL}/people?${queryParams}`)
     const data = (await apiResponse.json()) as PersonNetworkResponse
 

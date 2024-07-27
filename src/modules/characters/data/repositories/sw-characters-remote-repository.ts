@@ -23,7 +23,7 @@ export class StarWarsCharactersRemoteRepository
     const id = url.split('https://swapi.dev/api/planets/')[1].replace('/', '')
 
     return safeNetworkApiCall<PlanetNetworkModel>(() =>
-      fetch(`${this._baseUrl}/api/planets?id=${id}`, {
+      fetch(`/api/planets/${id}`, {
         method: 'GET',
       })
     )
@@ -31,7 +31,7 @@ export class StarWarsCharactersRemoteRepository
 
   async getAllPeople(page: number): Promise<PersonNetworkModel[]> {
     const { results } = await safeNetworkApiCall<PersonNetworkResponse>(() =>
-      fetch(`${this._baseUrl}/api/people?page=${page}`, {
+      fetch(`/api/people?page=${page}`, {
         method: 'GET',
       })
     )
@@ -41,7 +41,7 @@ export class StarWarsCharactersRemoteRepository
 
   async getAllPlanets(page: number): Promise<PlanetNetworkModel[]> {
     const { results } = await safeNetworkApiCall<PlanetNetworkResponse>(() =>
-      fetch(`${this._baseUrl}/api/planets?page=${page}`, {
+      fetch(`/api/planets?page=${page}`, {
         method: 'GET',
       })
     )

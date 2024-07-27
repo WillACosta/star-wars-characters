@@ -41,6 +41,7 @@ export function useCharactersViewController() {
 
         setPlanetOptions(availablePlanets)
         setCharacters(characters)
+        setFilteredCharacters(characters)
       } catch {
         showToast({
           type: 'error',
@@ -54,8 +55,6 @@ export function useCharactersViewController() {
     loadMoreResults()
   }, [page])
 
-  useEffect(() => setFilteredCharacters(characters), [characters])
-
   function loadMoreResults() {
     setPage((old) => old ?? 0 + 1)
   }
@@ -65,7 +64,7 @@ export function useCharactersViewController() {
       items.find((item) => item.value === char.homeWorld.toLowerCase())
     )
 
-    setFilteredCharacters(filteredItems.length > 0 ? filteredItems : characters)
+    setFilteredCharacters(filteredItems)
   }
 
   return {

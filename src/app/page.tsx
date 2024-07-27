@@ -1,11 +1,17 @@
+import { Suspense } from 'react'
+
+import LoadingSpinner from '@/components/atoms/LoadingSpinner'
 import Header from '@/components/layout/Header'
-import ServerCharactersView from '@/modules/characters/presentation/views/ServerCharactersView'
+import CharactersView from '@/modules/characters/presentation/views/CharactersView'
 
 export default function Home() {
   return (
     <main>
       <Header />
-      <ServerCharactersView />
+      {/* implement characters shimmer layout */}
+      <Suspense fallback={<LoadingSpinner />}>
+        <CharactersView />
+      </Suspense>
     </main>
   )
 }

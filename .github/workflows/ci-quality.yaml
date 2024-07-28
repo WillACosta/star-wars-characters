@@ -3,7 +3,8 @@ name: 'Code Quality Validation'
 on:
   push:
     branches:
-      - 'main'
+      - 'feature/**'
+      - 'refactor/**'
 
 jobs:
   code_quality:
@@ -12,15 +13,18 @@ jobs:
 
     steps:
       - name: Get Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.5.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Setup tools
-        run: npm i -g pnpm
+          cache: pnpm
 
       - name: Get dependencies
         run: pnpm install

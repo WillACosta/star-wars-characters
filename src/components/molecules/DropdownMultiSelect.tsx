@@ -1,10 +1,10 @@
 import { KeyboardEvent, useContext, useEffect } from 'react'
 
-import ArrowIcon from '@/components/atoms/ArrowIcon'
 import { CharactersContext } from '@/modules/characters/presentation/controller'
-
-import { Button } from '../atoms/Button'
 import { useDropdownMultiSelect } from './use-dropdown-multi-select'
+
+import ArrowIcon from '@/components/atoms/ArrowIcon'
+import Button from '../atoms/Button'
 
 export type DropdownOption = {
   label: string
@@ -68,25 +68,26 @@ export default function DropdownMultiSelect({
 
   return (
     <div className='flex justify-between w-full'>
-      <div className='text-left border-app-gray-200 border-b relative w-[300px]'>
+      <div className='text-left border-app-gray-200 dark:border-app-gray-400 border-b relative w-[300px]'>
         <div
           tabIndex={1}
           role='listbox'
           ref={inputRef}
           onClick={toggleMenuVisibility}
           onKeyDown={handleFilterBoxKeyDown}
-          className='p-1 flex items-center justify-between text-primary'
+          className='p-1 flex items-center justify-between text-primary dark:text-app-gray-100'
         >
           {getInputDisplayValue(placeHolder, onChange)}
           <ArrowIcon className={showMenu ? 'rotate-180' : 'rotate-0'} />
         </div>
 
         {showMenu && (
-          <div className='absolute translate-x-1 w-full border border-app-gray-300 bg-white rounded overflow-auto max-h-[300px] z-10 animate-fade-down animate-duration-500'>
-            <div className='p-1 bg-app-gray-100'>
+          <div className='absolute translate-x-1 w-full max-sm:w-auto border border-app-gray-300 bg-white dark:bg-app-gray-500 rounded overflow-auto max-h-[300px] z-10 animate-fade-down animate-duration-500'>
+            <div className='p-1 bg-app-gray-100 dark:bg-app-gray-500'>
               <input
                 name='filter'
-                className='w-full p-1 border border-app-gray-300 rounded focus:border-primary focus:outline-primary'
+                className='w-full p-1 border border-app-gray-300 rounded focus:outline-primary
+                dark:focus:outline-none dark:bg-app-gray-500'
                 onChange={handleSearch}
                 value={searchValue}
                 ref={searchRef}

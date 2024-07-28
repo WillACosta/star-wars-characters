@@ -1,15 +1,13 @@
-import { PlanetNetworkResponse } from '@/modules/characters/data/models'
 import { NextRequest, NextResponse } from 'next/server'
+
+import { PlanetNetworkResponse } from '@/modules/characters/data/models'
 
 const SWAPI_BASE_URL = process.env.SWAPI_BASE_URL
 
-export async function GET(request: NextRequest) {
+export async function GET({ nextUrl }: NextRequest) {
   try {
-    const queryParams = await request.nextUrl.searchParams
-    const url = queryParams.get('id')?.length
-      ? `${SWAPI_BASE_URL}/planets/${queryParams.get('id')}`
-      : `${SWAPI_BASE_URL}/planets?${queryParams}`
-
+    const queryParams = await nextUrl.searchParams
+    const url = `${SWAPI_BASE_URL}/planets?${queryParams}`
     const apiResponse = await fetch(url)
     const data = (await apiResponse.json()) as PlanetNetworkResponse
 

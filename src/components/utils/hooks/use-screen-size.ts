@@ -20,7 +20,6 @@ export function useScreenSize() {
     }
 
     window.addEventListener('resize', handleResize)
-    console.log('useScreenSize called')
 
     return () => {
       window.removeEventListener('resize', handleResize)

@@ -1,7 +1,7 @@
 export class MockStarWarsCharactersRepository {
   getAllPlanets = jest.fn()
   getAllPeople = jest.fn()
-  getPlanet = jest.fn()
+  getPlanetDetails = jest.fn()
 }
 
 export class MockMemoryManagerService {

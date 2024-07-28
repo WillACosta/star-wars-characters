@@ -61,7 +61,7 @@ export function useDropdownMultiSelect() {
         {selectedValue.map((option: DropdownOption) => (
           <div
             key={option.value}
-            className='bg-app-gray-100 py-[2px] px-1 rounded items-center flex'
+            className='bg-app-gray-100 py-[2px] px-1 rounded items-center flex dark:bg-app-gray-500'
           >
             {option.label}
             <span onClick={(e) => onTagRemove(e as any, option, onChange)}>

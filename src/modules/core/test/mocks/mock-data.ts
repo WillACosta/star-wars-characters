@@ -1,3 +1,5 @@
+import { Character } from '@/modules/characters/domain/models'
+
 export abstract class MockData {
   static people = [
     {
@@ -13,6 +15,7 @@ export abstract class MockData {
   static planets = [
     {
       name: 'Tatooine',
+      population: '200000',
       residents: [
         'https://swapi.dev/api/people/1',
         'https://swapi.dev/api/people/2',
@@ -20,11 +23,10 @@ export abstract class MockData {
     },
   ]
 
-  static characters = [
+  static characters: Character[] = [
     {
-      id: 'dcd8c803-d9d1-464f-86b3-98a734c3a316',
-      image: 'https://picsum.photos/seed/dcd8c803-d9d1-464f-86b3-98a734c3a316/400/200',
-      mobileImage: 'https://picsum.photos/seed/dcd8c803-d9d1-464f-86b3-98a734c3a316/115/130',
+      id: '1',
+      image: '/images/characters/1.jpg',
       name: 'Anakin S.',
       height: '172',
       mass: '77',
@@ -32,6 +34,4 @@ export abstract class MockData {
       homeWorld: 'Tatooine',
     },
   ]
-
-  static uuid = 'dcd8c803-d9d1-464f-86b3-98a734c3a316'
 }

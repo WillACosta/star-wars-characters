@@ -7,7 +7,7 @@ export default function CharactersViewShimmer() {
     <section className='mt-12 p-2'>
       <Shimmer className='w-full h-20' />
 
-      <div className='container-fluid mx-auto px-[50px] pb-10 mt-12'>
+      <div className='container-fluid mx-auto px-[50px] max-sm:px-3 pb-10 mt-12'>
         <Shimmer className='w-[200px] h-10 mb-5' />
 
         <div className='py-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5'>

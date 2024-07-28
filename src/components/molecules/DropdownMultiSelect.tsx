@@ -82,7 +82,7 @@ export default function DropdownMultiSelect({
         </div>
 
         {showMenu && (
-          <div className='absolute translate-x-1 w-full border border-app-gray-300 bg-white dark:bg-app-gray-500 rounded overflow-auto max-h-[300px] z-10 animate-fade-down animate-duration-500'>
+          <div className='absolute translate-x-1 w-full max-sm:w-auto border border-app-gray-300 bg-white dark:bg-app-gray-500 rounded overflow-auto max-h-[300px] z-10 animate-fade-down animate-duration-500'>
             <div className='p-1 bg-app-gray-100 dark:bg-app-gray-500'>
               <input
                 name='filter'

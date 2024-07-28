@@ -2,7 +2,7 @@ import { ThemeSwitcher } from '../molecules/ThemeSwitcher'
 
 export default function Header() {
   return (
-    <div className='container-fluid mx-auto px-[50px] mt-[30px] animate-fade-up flex justify-between items-start'>
+    <div className='container-fluid mx-auto px-[50px] max-sm:px-3 mt-[30px] animate-fade-up flex justify-between items-start'>
       <div className='flex flex-col gap-[25px] max-w-[900px]'>
         <h1 className='text-[32px] md:text-[54px] lg:text-[54px] font-light text-app-gray-500 dark:text-app-gray-100'>
           Star Wars Characters

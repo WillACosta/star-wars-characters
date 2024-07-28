@@ -1,8 +1,7 @@
 import {
-  MockCrypto,
   MockData,
   MockMemoryManagerService,
-  MockStarWarsCharactersRepository,
+  MockStarWarsCharactersRepository
 } from '@/modules/core/test/mocks'
 
 import { GetCharactersUseCase } from './get-characters-usecase'
@@ -10,30 +9,21 @@ import { GetCharactersUseCase } from './get-characters-usecase'
 describe('GetCharactersUseCase Tests', () => {
   let repository: MockStarWarsCharactersRepository
   let memoryManagerService: MockMemoryManagerService
-  let crypto: Crypto
   let getCharactersUseCase: GetCharactersUseCase
 
   beforeEach(() => {
     repository = new MockStarWarsCharactersRepository()
     memoryManagerService = new MockMemoryManagerService()
-    crypto = new MockCrypto() as any
 
     getCharactersUseCase = new GetCharactersUseCase(
       repository,
-      memoryManagerService,
-      crypto
+      memoryManagerService
     )
-
-    setupRequiredMethods()
   })
 
   afterEach(() => {
     jest.clearAllMocks()
   })
-
-  function setupRequiredMethods() {
-    jest.spyOn(crypto, 'randomUUID').mockReturnValue(MockData.uuid)
-  }
 
   test('should throw an error if page value is less or equal to 0 and not call repository methods', () => {
     expect(() => getCharactersUseCase.execute(0)).rejects.toThrow(

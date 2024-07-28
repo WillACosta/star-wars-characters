@@ -20,8 +20,6 @@ import 'reflect-metadata'
 export class StarWarsCharactersRemoteRepository
   implements StarWarsCharactersRepository
 {
-  private _baseUrl = process.env.APP_SERVER
-
   async getPlanetDetails(url: string): Promise<PlanetNetworkModel> {
     const id = extractIdFromSWApiResourceUrl(url, 'planets')
 

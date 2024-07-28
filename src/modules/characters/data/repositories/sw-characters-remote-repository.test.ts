@@ -12,6 +12,10 @@ describe('StarWarsCharactersRepository Tests', () => {
     repository = new StarWarsCharactersRemoteRepository()
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   function mockFetchApiCall(callback: () => void) {
     jest
       .spyOn(global, 'fetch')
@@ -22,7 +26,11 @@ describe('StarWarsCharactersRepository Tests', () => {
 
   describe('get Planets', () => {
     test('should return a list of planets with success', async () => {
-      mockFetchApiCall(() => Promise.resolve({ results: MockData.planets }))
+      mockFetchApiCall(() =>
+        Promise.resolve({
+          data: { results: MockData.planets },
+        })
+      )
 
       const actual = await repository.getAllPlanets(1)
       expect(actual).toBe(MockData.planets)
@@ -43,10 +51,12 @@ describe('StarWarsCharactersRepository Tests', () => {
     test('should return a list of people', async () => {
       mockFetchApiCall(() =>
         Promise.resolve({
-          count: 1,
-          next: 'https://swapi.dev/api/planets/?page=2',
-          previous: null,
-          results: [],
+          data: {
+            count: 1,
+            next: 'https://swapi.dev/api/planets/?page=2',
+            previous: null,
+            results: [],
+          },
         })
       )
 
@@ -66,12 +76,18 @@ describe('StarWarsCharactersRepository Tests', () => {
   })
 
   describe('get Planet', () => {
-    test('should get a planet by id and call data source method with correct id', () => {
-      mockFetchApiCall(() => Promise.resolve(MockData.planets[0]))
+    test('should get a planet by id and call data source method with correct id', async () => {
+      mockFetchApiCall(() =>
+        Promise.resolve({
+          data: MockData.planets[0],
+        })
+      )
 
-      expect(
-        repository.getPlanetDetails('https://swapi.dev/api/planets/1/')
-      ).resolves.toEqual(MockData.planets[0])
+      const actual = await repository.getPlanetDetails(
+        'https://swapi.dev/api/planets/1/'
+      )
+
+      expect(actual).toEqual(MockData.planets[0])
     })
 
     test('should thrown an error if something went wrong', () => {

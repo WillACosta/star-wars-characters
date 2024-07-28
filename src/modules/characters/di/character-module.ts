@@ -40,8 +40,6 @@ function initializeModule(bind: interfaces.Bind) {
   bind<GetAvailablePlanetsUseCase>(DI_TYPES.GetAvailablePlanetsUseCase).to(
     GetAvailablePlanetsUseCase
   )
-
-  bind<Crypto>(DI_TYPES.Crypto).toConstantValue(crypto)
 }
 
 export const CharactersModule = new ContainerModule(initializeModule)

@@ -4,7 +4,6 @@ const DI_TYPES = {
   StarWarsCharactersRepository: Symbol.for('StarWarsCharactersRepository'),
   GetCharactersUseCase: Symbol.for('GetCharactersUseCase'),
   GetAvailablePlanetsUseCase: Symbol.for('GetAvailablePlanetsUseCase'),
-  Crypto: Symbol.for('Crypto'),
 }
 
 export { DI_TYPES }

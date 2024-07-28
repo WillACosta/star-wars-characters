@@ -25,8 +25,8 @@ This project is built on top of concepts like [Layered Architecture](https://www
 This project uses a modularization approach, to organize and follow the best architecture guidelines, as you can see in the representation of the main layers below:
 
 <br/>
-  <img align="center" src="docs/images/arch_layers.png">
-<br/>
+  <center><img align="center" src="docs/images/arch_layers.png"></center>
+<br/><br/>
 
 Take a look into how the app's folder structure looks like:
 

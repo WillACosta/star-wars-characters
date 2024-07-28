@@ -33,11 +33,15 @@ export default function CardItem({
       />
 
       <div className='py-[13px]'>
-        <p className='text-[20px] text-black'>{name}</p>
-        <p className='text-[16px] text-black'>{homeWorld}</p>
+        <p className='text-[20px] text-app-gray-500 dark:text-app-gray-100'>
+          {name}
+        </p>
+        <p className='text-[16px] text-app-gray-500 dark:text-app-gray-100'>
+          {homeWorld}
+        </p>
       </div>
 
-      <ul className='text-muted max-sm:hidden'>
+      <ul className='text-muted dark:text-app-gray-300 max-sm:hidden'>
         <li className='flex items-center'>
           <span className='mr-2 after'>HEIGHT</span>
           <span className='w-1 h-1 mr-2 bg-muted rounded-full'></span>

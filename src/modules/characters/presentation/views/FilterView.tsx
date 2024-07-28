@@ -29,7 +29,10 @@ export default function FilterView({ options = [] }: FilterViewProps) {
 
       <div className='container-fluid mx-auto px-[50px]'>
         <div className='flex items-center justify-between w-full py-[26px]'>
-          <label className='mr-3 w-[100px] text-app-gray-400' tabIndex={0}>
+          <label
+            className='mr-3 w-[100px] text-app-gray-500 dark:text-app-gray-100'
+            tabIndex={0}
+          >
             Filter By:
           </label>
 
